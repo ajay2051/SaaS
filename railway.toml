@@ -1,0 +1,9 @@
+[build]
+builder = 'DOCKERFILE'
+dockerfilePath = "./Dockerfile"
+matchPatterns = [
+    'requirements.txt',
+    'src/**',
+    'railway.toml',
+    'Dockerfile'
+]
