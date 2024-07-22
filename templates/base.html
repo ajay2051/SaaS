@@ -4,9 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Saas{% endblock title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+
 </head>
 <body>
+{% include 'navbar.html' %}
 {% block content %}
 {% endblock content %}
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 </body>
 </html>
