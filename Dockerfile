@@ -18,6 +18,9 @@ RUN pip install --upgrade pip gunicorn
 COPY requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
+RUN python manage.py vendor_pull
+RUN python manage.py collectstatic --noinput
+
 COPY . /usr/src/app/
 CMD ["cp", ".prod-env",".env"]
 
