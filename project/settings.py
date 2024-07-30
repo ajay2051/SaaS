@@ -68,6 +68,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'allauth',
+    'allauth_ui',
+    'widget_tweaks',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
