@@ -94,7 +94,10 @@ MIDDLEWARE = [
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
-
+    'github': {
+        'VERIFIED_EMAIL': True,
+        'GITHUB_URL': 'https://github.com/ajay2051',
+    }
 }
 
 ROOT_URLCONF = 'project.urls'
