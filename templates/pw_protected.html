@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Enter Password</h1>
+<form action="" method="post">
+  {% csrf_token %}
+  <input type="password" name="code" placeholder="Enter Password" />
+  <button type="submit">Enter</button>
+
+</form>
+{% endblock %}

@@ -26,3 +26,18 @@ def register_view(request):
         user.save()
         return redirect('/auth_app/login')
     return render(request, 'register.html', context={})
+
+
+VALID_CODE = 'abc123'
+
+
+def pw_protected_view(request, *args, **kwargs):
+    is_allowed = request.session.get('protected_page_allowed') or 0
+    if request.method == 'POST':
+        password_sent = request.POST.get('code') or None
+        if password_sent == VALID_CODE:
+            is_allowed = 1
+            request.session['protected_page_allowed'] = 1
+    if is_allowed:
+        return redirect('home_page')
+    return render(request, 'pw_protected.html', context={})
