@@ -2,7 +2,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 def login_view(request):
@@ -50,3 +51,9 @@ def pw_protected_view(request, *args, **kwargs):
 @staff_member_required
 def user_only_page_view(request, *args, **kwargs):
     return render(request, 'user_only_page.html', context={})
+
+
+@login_required
+def profile_view(request, username=None, *args, **kwargs):
+    profile_user_obj = get_object_or_404(User, username=username)
+    return HttpResponse(f'Hello, {username} - {profile_user_obj.id}. You\'re at the profile page.')
