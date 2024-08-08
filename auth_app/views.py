@@ -57,3 +57,10 @@ def user_only_page_view(request, *args, **kwargs):
 def profile_view(request, username=None, *args, **kwargs):
     profile_user_obj = get_object_or_404(User, username=username)
     return HttpResponse(f'Hello, {username} - {profile_user_obj.id}. You\'re at the profile page.')
+
+
+@login_required
+def profile_list_view(request, *args, **kwargs):
+    users = User.objects.filter(is_active=True)
+    context = {'users': users}
+    return render(request, 'profile_list.html', context)
