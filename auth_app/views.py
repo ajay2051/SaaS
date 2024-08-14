@@ -7,6 +7,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 
 def login_view(request):
+    """
+    Login View for All Users
+    :param request:
+    :return:
+    """
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
