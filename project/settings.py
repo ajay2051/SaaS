@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'auth_app.apps.AuthAppConfig',
     'visits.apps.VisitsConfig',
     'subscriptions.apps.SubscriptionsConfig',
+    'customers.apps.CustomersConfig',
 
 ]
 
