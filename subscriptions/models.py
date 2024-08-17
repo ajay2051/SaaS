@@ -1,17 +1,23 @@
+from django.conf import settings
 from django.contrib.auth.models import Group, Permission
 from django.db import models
-
-from django.conf import settings
 from django.db.models.signals import post_save
+
+from helpers.billing import create_customer, create_product
 
 User = settings.AUTH_USER_MODEL
 ALLOW_CUSTOM_GROUPS = True
 
+
 class Subscription(models.Model):
+    """
+    Subscription = Stripe Model
+    """
     name = models.CharField(max_length=120, null=True, blank=True)
     active = models.BooleanField(default=True)
     group = models.ManyToManyField(Group, null=True, blank=True)
     permissions = models.ManyToManyField(Permission, null=True, blank=True, limit_choices_to={'content_type__app_label': 'subscriptions'})
+    stripe_id = models.CharField(max_length=120, null=True, blank=True)
 
     class Meta:
         permissions = (
@@ -23,6 +29,13 @@ class Subscription(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        if not self.stripe_id:
+                    stripe_id = create_product(name=self.name, raw=False)
+                    self.stripe_id = stripe_id
+        super().save(*args, **kwargs)
+
+
 class UserSubscription(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null=True, blank=True)
@@ -30,6 +43,7 @@ class UserSubscription(models.Model):
 
     def __str__(self):
         return str(self.user)
+
 
 def user_sub_post_save(sender, instance, created, **kwargs):
     user_sub_instance = instance
@@ -53,4 +67,6 @@ def user_sub_post_save(sender, instance, created, **kwargs):
         current_groups_set = set(current_groups) - subs_groups_set
         final_group_ids = list(group_ids_set | current_groups_set)
         user.groups.set(final_group_ids)
+
+
 post_save.connect(user_sub_post_save, sender=UserSubscription)

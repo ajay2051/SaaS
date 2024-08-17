@@ -1,8 +1,9 @@
 from pathlib import Path
 from typing import Any
 
-from django.core.management import BaseCommand
 from django.conf import settings
+from django.core.management import BaseCommand
+
 import helpers
 
 STATICFILES_VENDOR_DIRS = getattr(settings, 'STATICFILES_VENDOR_DIRS')
