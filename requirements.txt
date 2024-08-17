@@ -18,6 +18,7 @@ requests==2.32.3
 requests-oauthlib==2.0.0
 slippers==0.6.2
 sqlparse==0.5.1
+stripe==10.8.0
 typeguard==2.13.3
 typing_extensions==4.12.2
 urllib3==2.2.2
