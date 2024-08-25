@@ -47,6 +47,7 @@ class SubscriptionPrice(models.Model):
     class IntervalChoices(models.TextChoices):
         MONTHLY = 'MONTHLY', 'Monthly'
         WEEKLY = 'WEEKLY', 'Weekly'
+        YEARLY = 'YEARLY', 'Yearly'
     subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, blank=True, null=True)
     stripe_id = models.CharField(max_length=120, null=True, blank=True)
     interval = models.CharField(max_length=120, default=IntervalChoices.WEEKLY, choices=IntervalChoices.choices)
