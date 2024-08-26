@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group, Permission
 from django.db import models
 from django.db.models.signals import post_save
 
-from helpers.billing import create_customer, create_product, create_price
+from helpers.billing import create_customer, create_price, create_product
 
 User = settings.AUTH_USER_MODEL
 ALLOW_CUSTOM_GROUPS = True
