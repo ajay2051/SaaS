@@ -1,0 +1,18 @@
+name: Hello World Github Actions
+
+on:
+#  workflow-dispatch:
+#  schedule:
+#    - cron: '30 15 * * * '
+  push:
+    branch:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello There
+        run: echo "Hello World"
+  test:
+  deploy:
