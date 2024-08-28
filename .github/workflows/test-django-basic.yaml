@@ -24,8 +24,7 @@ jobs:
 
       - name: Set Up Django Secret Key
         run: |
-          my_key = $(openssl rand -base64 32)
-          echo "DJANGO_SECRET_KEY=$my_key" >> $GITHUB_ENV
+          echo "DJANGO_SECRET_KEY=$(openssl rand -base64 32)" >> $GITHUB_ENV
 
       - name: Install Requirements
 #        working-directory: ./
