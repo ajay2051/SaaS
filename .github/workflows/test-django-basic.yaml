@@ -1,4 +1,4 @@
-name: Test Django Basic With Env
+name: Test Django Basic With Env and Database Secret
 
 on:
 #  workflow-dispatch:
@@ -11,8 +11,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-#    env:
-#      DJANGO_SECRET_KEY: not-good
+    env:
+      DJANGO_SECRET_KEY: not-good
+      DATABASE_URL: ${{ secrets.DATABASE_URL  }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
