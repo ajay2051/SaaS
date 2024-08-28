@@ -14,5 +14,5 @@ jobs:
     steps:
       - name: Hello There
         run: echo "Hello World"
-  test:
-  deploy:
+#  test:
+#  deploy:
