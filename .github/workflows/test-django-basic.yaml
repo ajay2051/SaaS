@@ -23,6 +23,11 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Set Up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.0"
+
       - name: Set Up Django Secret Key
         run: |
           echo "DJANGO_SECRET_KEY=$(openssl rand -base64 32)" >> $GITHUB_ENV
